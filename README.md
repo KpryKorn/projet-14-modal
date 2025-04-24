@@ -1,14 +1,19 @@
 # Utilisation du composant Modal
 
-Le composant Modal est une solution légère et réutilisable pour afficher des contenus en superposition de votre application. Stylisé avec Tailwind CSS, ce composant est conçu pour être à la fois fonctionnel et flexible.
+Le composant Modal est une solution légère et réutilisable pour afficher des contenus en superposition de votre application. Ce composant est conçu pour être à la fois fonctionnel et flexible.
 
 ## Installation
 
-_Ce composant est conçu pour une application React et Tailwind. Merci de vérifier que votre projet utilise ces librairies_
+_Ce composant est conçu pour une application React. Merci de vérifier que votre projet utilise cette librairie_
 
 ```bash
 npm i projet-14-modal
 ```
+
+## Recommandations (éditeur de texte, version de Node..)
+
+- IDE : VSCode
+- Node : LTS 22.14
 
 ## Fonctionnalités
 

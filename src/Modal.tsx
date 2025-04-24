@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from "react";
+import "./style.css";
 
 export interface ModalProps {
   isOpen: boolean;
@@ -10,7 +11,7 @@ export interface ModalProps {
 export function Modal({ isOpen, onClose, title, children }: ModalProps) {
   const modalRef = useRef<HTMLDivElement>(null);
 
-  // cliquer en d ehors
+  // cliquer en dehors
   const handleOutsideClick = (e: MouseEvent) => {
     if (modalRef.current && !modalRef.current.contains(e.target as Node)) {
       onClose();
@@ -26,13 +27,13 @@ export function Modal({ isOpen, onClose, title, children }: ModalProps) {
 
   useEffect(() => {
     if (isOpen) {
-      document.body.style.overflow = "hidden";
+      document.body.classList.add("modal-open");
     } else {
-      document.body.style.overflow = "auto";
+      document.body.classList.remove("modal-open");
     }
 
     return () => {
-      document.body.style.overflow = "auto";
+      document.body.classList.remove("modal-open");
     };
   }, [isOpen]);
 
@@ -46,24 +47,24 @@ export function Modal({ isOpen, onClose, title, children }: ModalProps) {
       document.removeEventListener("mousedown", handleOutsideClick);
       document.removeEventListener("keydown", handleEscapeKey);
     };
-  });
+  }, [isOpen, handleOutsideClick, handleEscapeKey]);
 
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-gray-900/50 transition-opacity">
+    <div className="modal-overlay">
       <div
         ref={modalRef}
-        className={`relative bg-white rounded-lg shadow-xl max-w-md w-full mx-4 transition-all duration-300 transform`}
+        className="modal-container"
         style={{ maxHeight: "calc(100vh - 3rem)" }}
       >
         <button
-          className="absolute top-3 right-3 text-gray-400 hover:text-gray-600 focus:outline-none"
+          className="modal-close-button"
           onClick={onClose}
           aria-label="Close"
         >
           <svg
-            className="w-6 h-6"
+            className="modal-close-icon"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -79,12 +80,16 @@ export function Modal({ isOpen, onClose, title, children }: ModalProps) {
         </button>
 
         {title && (
-          <div className="px-6 py-4 border-b border-gray-200">
-            <h3 className="text-lg font-medium text-gray-900">{title}</h3>
+          <div className="modal-header">
+            <h3 className="modal-title">{title}</h3>
           </div>
         )}
 
-        <div className={`${title ? "py-4" : "pt-8 pb-4"} px-6 overflow-y-auto`}>
+        <div
+          className={`modal-body ${
+            title ? "modal-body-with-title" : "modal-body-without-title"
+          }`}
+        >
           {children}
         </div>
       </div>
