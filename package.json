@@ -1,6 +1,6 @@
 {
   "name": "projet-14-modal",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Un composant modal pour le dernier projet OC",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -8,7 +8,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsc",
+    "build": "tsc && cp src/style.css dist/style.css",
     "prepublishOnly": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
