@@ -1,6 +1,6 @@
 {
   "name": "projet-14-modal",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Un composant modal pour le dernier projet OC",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
